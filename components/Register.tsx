@@ -41,8 +41,8 @@ const Register = ({
         body: JSON.stringify(user),
       });
       const data = await res.json();
+      setMessage(data.message);
       if (res.ok) {
-        setMessage(data.message);
         handleComponents();
       }
     } catch (error) {

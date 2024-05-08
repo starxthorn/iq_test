@@ -8,15 +8,21 @@ export async function POST(req: NextRequest) {
     const { name, email, password } = await req.json();
     const Existuser = await User.findOne({ email });
     if (Existuser) {
-      return NextResponse.json({
-        message: "user is already exists",
-      });
+      return NextResponse.json(
+        {
+          message: "user is already exists",
+        },
+        { status: 400 }
+      );
     }
     const user = await User.create({ name, email, password });
-    return NextResponse.json({
-      message: "User created",
-      response: user,
-    });
+    return NextResponse.json(
+      {
+        message: "User created",
+        response: user,
+      },
+      { status: 200 }
+    );
   } catch (error) {
     console.log(error);
   }
