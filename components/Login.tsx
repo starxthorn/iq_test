@@ -45,6 +45,8 @@ const Login = ({
       if (res.ok) {
         loggedin(false);
         await signIn("credentials", {
+          redirect: true,
+          callbackUrl: "/",
           email: user?.email,
           password: user?.password,
         });
